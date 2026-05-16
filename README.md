@@ -11,30 +11,22 @@ This AR experience is mobile-exclusive.
 - Users can move around the drone to view it from any angle
 - 8thWall provides reliable SLAM (Simultaneous Localization and Mapping)
 
-## Project Structure
+## Before starting
 
-The source code for this demo is not directly available due to its use of 8thWall's free-tier Studio hosting.
-However, the project structure and file copies are provided for reference.
+- Remove all TODOs
+- Change APP_TITLE, APP_DESCRIPTION in README.md
+- Change name in package.json
+- Remove this section
 
-### 3D Scene
+## Getting Started
 
-- **Scene Object**
-  - `src/app.ts`: The primary 8thWall component that manages scene-level states
-- **Drone**
-  - `src/components/look-at-entity.ts`: Makes an entity rotate around the Y-axis to face a target entity
-- **Camera**
-  - `camera-controls.ts`: Handles camera states
-- **Lighting**
-  - Ambient Light
-  - Directional Light
-- **Ground**
+First, run the development server:
 
-### 2D UI
+```bash
+npm run start:dev
+```
 
-- **2D Fullscreen**
-  - `src/components/ui-fullscreen-visibility.ts`: A component to manage the visibility of the fullscreen UI
-- **2D Coaching**
-  - `src/components/ui-coaching-visibility.ts`: A component to manage the visibility of the coaching UI
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Why 8thWall?
 
