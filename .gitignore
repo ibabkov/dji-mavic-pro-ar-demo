@@ -34,5 +34,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# copied from node_modules/@8thwall/engine-binary/dist
+/public/external/
+
 # idea
 .idea
+
+certificates

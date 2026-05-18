@@ -4,6 +4,7 @@ import '../styles/theme.css';
 import React from 'react';
 
 import type { Metadata, Viewport } from 'next';
+import Script from 'next/script';
 
 import { APP_DESCRIPTION, DISPLAY_APP_TITLE, LANGUAGE } from '../constants/app';
 import { Layout } from '../components/Layout';
@@ -28,6 +29,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang={LANGUAGE}>
 			<body suppressHydrationWarning>
+				{/* XR8 engine and SLAM world tracking */}
+				<Script src="/external/xr/xr.js" strategy="beforeInteractive" data-preload-chunks="slam" />
+				{/* Loading screen, permission prompts, full-window canvas */}
+				<Script src="/external/xrextras/xrextras.js" strategy="beforeInteractive" />
+				{/* Unsupported-browser redirect screen */}
+				<Script src="/external/landing-page/landing-page.js" strategy="beforeInteractive" />
 				<Layout>{children}</Layout>
 			</body>
 		</html>

@@ -1,7 +1,6 @@
 # DJI Mavic Pro AR Demo
 
-An interactive online demo showcasing an animated 3D model of the DJI Mavic Pro drone hovering in augmented reality (AR).
-This AR experience is mobile-exclusive.
+An interactive online demo showcasing an animated 3D model of the DJI Mavic Pro drone hovering in augmented reality (AR). This AR experience is mobile-exclusive.
 
 ## Main Features
 
@@ -43,3 +42,9 @@ the demo can only be viewed via a live deployment.
 2. Grant camera & motion access when prompted
 3. Hold your phone up straight
 4. Move around the model to view it from all angles
+
+## 8thWall references
+
+- [8thwall.org/docs/api/engine](https://8thwall.org/docs/api/engine) — engine API reference
+- [github.com/8thwall/8thwall](https://github.com/8thwall/8thwall) — open-source packages: [`packages/xrextras`](https://github.com/8thwall/8thwall/tree/main/packages/xrextras), [`packages/landing-page`](https://github.com/8thwall/8thwall/tree/main/packages/landing-page), [`packages/ecs`](https://github.com/8thwall/8thwall/tree/main/packages/ecs)
+- [github.com/8thwall/engine](https://github.com/8thwall/engine) — distribution of the closed-source [`@8thwall/engine-binary`](https://www.npmjs.com/package/@8thwall/engine-binary) (WASM tracking runtime)

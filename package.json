@@ -9,7 +9,7 @@
 	},
 	"scripts": {
 		"build": "next build --webpack",
-		"start:dev": "next dev --webpack",
+		"start:dev": "next dev --webpack --experimental-https",
 		"start:prod": "next start",
 		"lint": "eslint",
 		"prepare": "husky",
@@ -18,16 +18,22 @@
 		"update": "npx ncu"
 	},
 	"dependencies": {
+		"@8thwall/engine-binary": "^1.0.0",
+		"@8thwall/landing-page": "^1.0.0",
+		"@8thwall/xrextras": "^1.0.0",
 		"next": "^16.2.6",
 		"react": "^19.2.6",
-		"react-dom": "^19.2.6"
+		"react-dom": "^19.2.6",
+		"three": "^0.184.0"
 	},
 	"devDependencies": {
 		"@types/node": "^25.8.0",
 		"@types/react": "^19.2.14",
 		"@types/react-dom": "^19.2.3",
+		"@types/three": "^0.184.1",
 		"@typescript-eslint/eslint-plugin": "^8.59.3",
 		"@typescript-eslint/parser": "^8.59.3",
+		"copy-webpack-plugin": "^14.0.0",
 		"eslint": "^9.39.4",
 		"eslint-config-next": "^16.2.6",
 		"eslint-config-prettier": "^10.1.8",
