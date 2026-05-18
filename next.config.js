@@ -1,9 +1,8 @@
+import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import CopyWebpackPlugin from 'copy-webpack-plugin';
-
-import { getLocalIPv4 } from './utils/getLocalIPv4.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -51,5 +50,17 @@ const nextConfig = {
 		return config;
 	},
 };
+
+/** Return first non-internal IPv4 address on this machine, or `undefined` if no LAN interface is up. */
+function getLocalIPv4 () {
+	for (const ifaces of Object.values(os.networkInterfaces())) {
+		for (const iface of ifaces ?? []) {
+			if (iface.family === 'IPv4' && !iface.internal) return iface.address;
+		}
+	}
+
+	return undefined;
+}
+
 
 export default nextConfig;
