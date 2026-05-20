@@ -42,6 +42,11 @@ const nextConfig = {
 							to: path.resolve(__dirname, 'public/external/landing-page'),
 							globOptions: { ignore: ['**/LICENSE'] },
 						},
+						{
+							from: path.resolve(__dirname, 'node_modules/three/examples/jsm/libs/draco'),
+							to: path.resolve(__dirname, 'public/external/draco'),
+							globOptions: { ignore: ['**/README.md', '**/draco_encoder.js'] },
+						},
 					],
 				}),
 			);

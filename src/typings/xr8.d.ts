@@ -1,3 +1,46 @@
+/** Per-frame data the engine passes to every pipeline module's `onUpdate` (and, in this app, to `useFrame` subscribers). */
+interface XR8FrameArgs {
+	/** Engine framework handle. */
+	framework: unknown;
+	/** GPU/texture state captured at the start of the frame. */
+	frameStartResult: {
+		/** Texture holding the current camera frame. */
+		cameraTexture: WebGLTexture;
+		/** Texture used for CPU/GPU compute passes. */
+		computeTexture: WebGLTexture;
+		/** Active WebGL rendering context. */
+		GLctx: WebGLRenderingContext;
+		/** Camera texture width in pixels. */
+		textureWidth: number;
+		/** Camera texture height in pixels. */
+		textureHeight: number;
+		/** Device orientation in degrees. */
+		orientation: number;
+		/** Frame timestamp in milliseconds. Difference across frames for delta time. */
+		videoTime: number;
+		/** Whether the frame needs a repaint. */
+		repaint: boolean;
+	};
+	/** CPU-side tracking results for the frame. */
+	processCpuResult: {
+		/** Camera pose and intrinsics, absent until tracking is established. */
+		reality?: {
+			/** Camera rotation quaternion. */
+			rotation: { w: number; x: number; y: number; z: number };
+			/** Camera position in world space. */
+			position: { x: number; y: number; z: number };
+			/** Camera intrinsics matrix as a flat array. */
+			intrinsics: number[];
+			/** Current tracking quality. */
+			trackingStatus?: 'NORMAL' | 'LIMITED' | 'NOT_AVAILABLE';
+			/** Reason for a degraded tracking status. */
+			trackingReason?: string;
+		};
+	};
+	/** GPU-side processing results for the frame. */
+	processGpuResult: unknown;
+}
+
 /** Camera pipeline module registered via `XR8.addCameraPipelineModule`. */
 interface XR8PipelineModule {
 	/** Unique identifier. */
@@ -5,7 +48,7 @@ interface XR8PipelineModule {
 	/** Called once when the camera feed begins. */
 	onStart?: (args: { canvas: HTMLCanvasElement; canvasWidth: number; canvasHeight: number }) => void;
 	/** Called every frame after tracking and rendering. */
-	onUpdate?: (args: unknown) => void;
+	onUpdate?: (args: XR8FrameArgs) => void;
 	/** Called when the pipeline throws an error. */
 	onException?: (error: unknown) => void;
 	[key: string]: unknown;
@@ -43,6 +86,7 @@ interface XR8XrController {
 
 /** Draws the camera feed into the WebGL canvas. */
 interface XR8GlTextureRenderer {
+	/** Pipeline module that renders the camera texture. */
 	pipelineModule(): XR8PipelineModule;
 }
 
@@ -75,17 +119,18 @@ interface XR8 {
 	addCameraPipelineModules(modules: XR8PipelineModule[]): void;
 	/** Detach every registered pipeline module. */
 	clearCameraPipelineModules(): void;
-	/** Start the camera + run loop, drawing into the given canvas. */
+	/** Starts the camera and run loop, drawing into the given canvas. */
 	run(options: {
+		/** Canvas the engine renders into. */
 		canvas: HTMLCanvasElement;
-		/** Which device families are allowed to start a session. See `XR8.XrConfig.device()`. Defaults to `'mobile-and-headsets'`. */
+		/** Which device families may start a session. See `XR8.XrConfig.device()`. Defaults to `'mobile-and-headsets'`. */
 		allowedDevices?: 'mobile-and-headsets' | 'mobile' | 'any';
 	}): void;
 	/** Stop the camera and run loop. */
 	stop(): void;
 }
 
-/** Helper modules from `@8thwall/xrextras` — required for the standard XR8 lifecycle. */
+/** Helper modules from `@8thwall/xrextras`. Required for the standard XR8 lifecycle. */
 interface XRExtras {
 	/** Resizes the canvas to fill the viewport on every layout change. */
 	FullWindowCanvas: { pipelineModule(): XR8PipelineModule };
@@ -97,6 +142,7 @@ interface XRExtras {
 
 /** Pre-AR landing screen from `@8thwall/landing-page`. Detects in-app webviews and other non-AR-capable contexts and prompts the user to open the URL in a real browser. */
 interface LandingPage {
+	/** Pipeline module that renders the pre-AR landing screen. */
 	pipelineModule(): XR8PipelineModule;
 }
 

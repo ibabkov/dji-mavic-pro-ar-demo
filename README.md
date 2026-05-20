@@ -1,21 +1,14 @@
 # DJI Mavic Pro AR Demo
 
-An interactive online demo showcasing an animated 3D model of the DJI Mavic Pro drone hovering in augmented reality (AR). This AR experience is mobile-exclusive.
+An interactive online demo showcasing an animated 3D model of the DJI Mavic Pro drone that follows you in augmented reality (AR). This AR experience is mobile-exclusive.
 
 ## Main Features
 
+- The drone flies with you, simulating a real drone's movements as it keeps its distance
 - Augmented Reality(AR) allows users to interact with the drone in their real-world environment
 - Optimized for mobile browsers without WebXR support
 - High-quality glb model of the DJI Mavic Pro, complete with animations
-- Users can move around the drone to view it from any angle
 - 8thWall provides reliable SLAM (Simultaneous Localization and Mapping)
-
-## Before starting
-
-- Remove all TODOs
-- Change APP_TITLE, APP_DESCRIPTION in README.md
-- Change name in package.json
-- Remove this section
 
 ## Getting Started
 
@@ -41,7 +34,7 @@ the demo can only be viewed via a live deployment.
 1. Open the demo on your mobile device: [ibabkov.com/projects/dji-mavic-pro-ar-demo/](http://www.ibabkov.com/projects/dji-mavic-pro-ar-demo/)
 2. Grant camera & motion access when prompted
 3. Hold your phone up straight
-4. Move around the model to view it from all angles
+4. Walk around and the drone follows you, holding its distance and altitude
 
 ## 8thWall references
 

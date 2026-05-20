@@ -1,4 +1,2 @@
-/**
- * Supported languages
- */
+/** Supported UI languages. */
 export type Language = 'en';

@@ -11,9 +11,9 @@ export const StatusPage = (props: IStatusPageProps) => {
 	const { title, description } = props;
 
 	return (
-		<section className={styles['container']}>
-			<span className={styles['title']}>{title}</span>
-			<span className={styles['description']}>{description}</span>
+		<section className={styles.container}>
+			<span className={styles.title}>{title}</span>
+			<span className={styles.description}>{description}</span>
 		</section>
 	);
 };

@@ -9,5 +9,5 @@ export interface ISceneLayoutProps {
 export const SceneLayout = (props: ISceneLayoutProps) => {
 	const { canvasRef } = props;
 
-	return <canvas ref={canvasRef} className={styles['canvas']} />;
+	return <canvas ref={canvasRef} className={styles.canvas} />;
 };

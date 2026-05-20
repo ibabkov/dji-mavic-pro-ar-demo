@@ -27,7 +27,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang={LANGUAGE}>
+		<html lang={LANGUAGE} suppressHydrationWarning>
 			<body suppressHydrationWarning>
 				{/* XR8 engine and SLAM world tracking */}
 				<Script src="/external/xr/xr.js" strategy="beforeInteractive" data-preload-chunks="slam" />

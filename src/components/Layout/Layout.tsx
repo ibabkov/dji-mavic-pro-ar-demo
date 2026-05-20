@@ -9,5 +9,5 @@ export interface ILayoutProps {
 export const Layout = (props: ILayoutProps) => {
 	const { children } = props;
 
-	return <main className={styles['container']}>{children}</main>;
+	return <main className={styles.container}>{children}</main>;
 };
