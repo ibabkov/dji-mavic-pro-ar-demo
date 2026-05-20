@@ -11,14 +11,7 @@ export type BottomOverlayProps = {
 	durationSeconds?: number;
 };
 
-
-const DEFAULT_HINTS = [
-	'Find a well-lit area',
-	'Hold your phone vertically',
-	'Look for the drone',
-	'Walk around - the drone will follow',
-];
-
+const DEFAULT_HINTS = ['Find a well-lit area', 'Hold your phone vertically', 'Look for the drone', 'Walk around - the drone will follow'];
 
 export const BottomOverlay = (props: BottomOverlayProps) => {
 	const { hints = DEFAULT_HINTS, durationSeconds = 5 } = props;

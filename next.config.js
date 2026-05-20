@@ -57,7 +57,7 @@ const nextConfig = {
 };
 
 /** Return first non-internal IPv4 address on this machine, or `undefined` if no LAN interface is up. */
-function getLocalIPv4 () {
+function getLocalIPv4() {
 	for (const ifaces of Object.values(os.networkInterfaces())) {
 		for (const iface of ifaces ?? []) {
 			if (iface.family === 'IPv4' && !iface.internal) return iface.address;
@@ -66,6 +66,5 @@ function getLocalIPv4 () {
 
 	return undefined;
 }
-
 
 export default nextConfig;
