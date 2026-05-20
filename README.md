@@ -1,40 +1,24 @@
 # DJI Mavic Pro AR Demo
 
-An interactive online demo showcasing an animated 3D model of the DJI Mavic Pro drone hovering in augmented reality (AR).
-This AR experience is mobile-exclusive.
+An interactive online demo showcasing an animated 3D model of the DJI Mavic Pro drone that follows you in augmented reality (AR). This AR experience is mobile-exclusive.
 
 ## Main Features
 
+- The drone flies with you, simulating a real drone's movements as it keeps its distance
 - Augmented Reality(AR) allows users to interact with the drone in their real-world environment
 - Optimized for mobile browsers without WebXR support
 - High-quality glb model of the DJI Mavic Pro, complete with animations
-- Users can move around the drone to view it from any angle
 - 8thWall provides reliable SLAM (Simultaneous Localization and Mapping)
 
-## Project Structure
+## Getting Started
 
-The source code for this demo is not directly available due to its use of 8thWall's free-tier Studio hosting.
-However, the project structure and file copies are provided for reference.
+First, run the development server:
 
-### 3D Scene
+```bash
+npm run start:dev
+```
 
-- **Scene Object**
-  - `src/app.ts`: The primary 8thWall component that manages scene-level states
-- **Drone**
-  - `src/components/look-at-entity.ts`: Makes an entity rotate around the Y-axis to face a target entity
-- **Camera**
-  - `camera-controls.ts`: Handles camera states
-- **Lighting**
-  - Ambient Light
-  - Directional Light
-- **Ground**
-
-### 2D UI
-
-- **2D Fullscreen**
-  - `src/components/ui-fullscreen-visibility.ts`: A component to manage the visibility of the fullscreen UI
-- **2D Coaching**
-  - `src/components/ui-coaching-visibility.ts`: A component to manage the visibility of the coaching UI
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Why 8thWall?
 
@@ -50,4 +34,10 @@ the demo can only be viewed via a live deployment.
 1. Open the demo on your mobile device: [ibabkov.com/projects/dji-mavic-pro-ar-demo/](http://www.ibabkov.com/projects/dji-mavic-pro-ar-demo/)
 2. Grant camera & motion access when prompted
 3. Hold your phone up straight
-4. Move around the model to view it from all angles
+4. Walk around and the drone follows you, holding its distance and altitude
+
+## 8thWall references
+
+- [8thwall.org/docs/api/engine](https://8thwall.org/docs/api/engine) — engine API reference
+- [github.com/8thwall/8thwall](https://github.com/8thwall/8thwall) — open-source packages: [`packages/xrextras`](https://github.com/8thwall/8thwall/tree/main/packages/xrextras), [`packages/landing-page`](https://github.com/8thwall/8thwall/tree/main/packages/landing-page), [`packages/ecs`](https://github.com/8thwall/8thwall/tree/main/packages/ecs)
+- [github.com/8thwall/engine](https://github.com/8thwall/engine) — distribution of the closed-source [`@8thwall/engine-binary`](https://www.npmjs.com/package/@8thwall/engine-binary) (WASM tracking runtime)
