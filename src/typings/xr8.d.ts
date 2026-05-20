@@ -137,8 +137,21 @@ type XRExtras = {
 	RuntimeError: { pipelineModule(): XR8PipelineModule };
 };
 
+/** Subset of `@8thwall/landing-page` config options we set. See https://8thwall.org/docs/engine/guides/landing-pages for the full list. */
+type LandingPageConfig = {
+	/** URL displayed to the user as text and a QR code. Overrides the auto-generated 8th.io short link. */
+	url?: string;
+	backgroundColor?: string;
+	/** Image source for the logo shown above the prompt. */
+	mediaSrc?: string;
+	/** Image alt text for the logo shown above the prompt. */
+	mediaAlt?: string;
+};
+
 /** Pre-AR landing screen from `@8thwall/landing-page`. Detects in-app webviews and other non-AR-capable contexts and prompts the user to open the URL in a real browser. */
 type LandingPage = {
+	/** Overrides landing-screen defaults. Must be called before `pipelineModule()` runs. */
+	configure(config: LandingPageConfig): void;
 	/** Pipeline module that renders the pre-AR landing screen. */
 	pipelineModule(): XR8PipelineModule;
 };
