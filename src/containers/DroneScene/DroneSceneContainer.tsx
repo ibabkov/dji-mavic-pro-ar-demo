@@ -4,6 +4,7 @@ import { Suspense, useRef } from 'react';
 
 import { SceneLayout } from '@/components/SceneLayout';
 import { StatusPage } from '@/components/StatusPage';
+import { BottomOverlay } from '@/components/BottomOverlay';
 import { usePipelineHealth } from '@/hooks/usePipelineHealth';
 import { useXR8Scene, XR8SceneContext } from '@/hooks/useXR8Scene';
 
@@ -17,8 +18,8 @@ export const DroneSceneContainer = () => {
 		onStart: ctx => {
 			ctx.camera.position.set(0, 1.8, 2);
 		},
-		onUpdate: ()=> reportFrame(),
-		onException: (error)=> reportException(error),
+		onUpdate: () => reportFrame(),
+		onException: error => reportException(error),
 	});
 
 	if (hasFailed) {
@@ -28,6 +29,7 @@ export const DroneSceneContainer = () => {
 	return (
 		<>
 			<SceneLayout canvasRef={canvasRef} />
+			<BottomOverlay />
 			<XR8SceneContext.Provider value={scenePromise}>
 				<Suspense fallback={null}>
 					<SceneContentContainer />

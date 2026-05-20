@@ -2,15 +2,15 @@ import { XR8Promise } from '@8thwall/engine-binary';
 import * as THREE from 'three';
 
 /** Options for buildXR8. */
-export interface IBuildXR8Options {
+export type BuildXR8Options = {
 	/** Canvas the engine renders into. */
 	canvas: HTMLCanvasElement;
 	/** Builds the pipeline modules once the engine is ready. */
 	buildModules: (xr8: XR8) => XR8PipelineModule[];
-}
+};
 
 /** Boots an XR8 session against a canvas. Returns a teardown that stops the engine and restores `window.THREE`. */
-export const buildXR8 = ({ canvas, buildModules }: IBuildXR8Options): (() => void) => {
+export const buildXR8 = ({ canvas, buildModules }: BuildXR8Options): (() => void) => {
 	// The engine reads window.THREE. Snapshot the prior value so teardown can restore it.
 	const previousTHREE = window.THREE;
 	window.THREE = THREE;

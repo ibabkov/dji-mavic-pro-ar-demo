@@ -6,7 +6,7 @@ import { Object3D } from 'three';
 
 import { useFrame } from '@/hooks/useFrame';
 
-export interface IFollowAltitudeOptions {
+export type FollowAltitudeOptions = {
 	/** Vertical offset from the target's Y. */
 	offset?: number;
 	/** Per-frame lerp weight toward the target altitude. */
@@ -15,14 +15,10 @@ export interface IFollowAltitudeOptions {
 	deadband?: number;
 	minY?: number;
 	maxY?: number;
-}
+};
 
 /** Lerps `follower.y` toward `target.y + offset` each frame, holding still inside a deadband to reject jitter. */
-export const useFollowAltitude = (
-	followerRef: RefObject<Object3D | null>,
-	target: Object3D,
-	opts: IFollowAltitudeOptions = {},
-): void => {
+export const useFollowAltitude = (followerRef: RefObject<Object3D | null>, target: Object3D, opts: FollowAltitudeOptions = {}): void => {
 	const { offset = 0, smoothing = 0.1, deadband = 0, minY, maxY } = opts;
 
 	useFrame(() => {

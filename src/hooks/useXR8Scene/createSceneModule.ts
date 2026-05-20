@@ -1,20 +1,20 @@
 import React from 'react';
 
-import { IFrameCallback, IXR8SceneContext } from '@/types';
+import { FrameCallback, XR8SceneHandles } from '@/types';
 
-import { IUseXR8SceneOptions } from './useXR8Scene';
+import { UseXR8SceneOptions } from './useXR8Scene';
 
 /** Builds the scene pipeline module. Forwards lifecycle events to the caller's callbacks and the frame bus, and resolves `onReady` on start. */
 export const createSceneModule = (
 	xr8: XR8,
-	frameBus: Set<IFrameCallback>,
-	onReady: (ctx: IXR8SceneContext) => void,
-	optionsRef: React.RefObject<IUseXR8SceneOptions>,
+	frameBus: Set<FrameCallback>,
+	onReady: (ctx: XR8SceneHandles) => void,
+	optionsRef: React.RefObject<UseXR8SceneOptions>,
 ): XR8PipelineModule => ({
 	name: 'xr8-scene',
 	onStart: () => {
 		const { scene, camera, renderer } = xr8.Threejs.xrScene();
-		const ctx: IXR8SceneContext = { xr8, scene, camera, renderer, frameBus };
+		const ctx: XR8SceneHandles = { xr8, scene, camera, renderer, frameBus };
 
 		optionsRef.current.onStart?.(ctx);
 

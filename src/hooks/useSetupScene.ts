@@ -4,9 +4,9 @@ import { useEffect } from 'react';
 
 import { AmbientLight, DirectionalLight } from 'three';
 
-import { IXR8SceneContext } from '@/types';
+import { XR8SceneHandles } from '@/types';
 
-export const useSetupScene = (ctx: IXR8SceneContext): void => {
+export const useSetupScene = (ctx: XR8SceneHandles): void => {
 	useEffect(() => {
 		const { scene } = ctx;
 		const keyLight = new DirectionalLight(0xffffff, 3);

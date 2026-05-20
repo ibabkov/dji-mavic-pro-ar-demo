@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { DRONE_CONFIG } from '@/containers/Drone/constants';
+import { DRONE_CONFIG } from '@/containers/Drone/droneConfig';
 import { useAnimationMixer } from '@/hooks/useAnimationMixer';
 import { useDroneOrientation } from '@/hooks/useDroneOrientation';
 import { useFollowAltitude } from '@/hooks/useFollowAltitude';

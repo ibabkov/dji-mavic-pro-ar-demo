@@ -1,5 +1,5 @@
 /** Per-frame data the engine passes to every pipeline module's `onUpdate` (and, in this app, to `useFrame` subscribers). */
-interface XR8FrameArgs {
+type XR8FrameArgs = {
 	/** Engine framework handle. */
 	framework: unknown;
 	/** GPU/texture state captured at the start of the frame. */
@@ -39,10 +39,10 @@ interface XR8FrameArgs {
 	};
 	/** GPU-side processing results for the frame. */
 	processGpuResult: unknown;
-}
+};
 
 /** Camera pipeline module registered via `XR8.addCameraPipelineModule`. */
-interface XR8PipelineModule {
+type XR8PipelineModule = {
 	/** Unique identifier. */
 	name: string;
 	/** Called once when the camera feed begins. */
@@ -52,10 +52,10 @@ interface XR8PipelineModule {
 	/** Called when the pipeline throws an error. */
 	onException?: (error: unknown) => void;
 	[key: string]: unknown;
-}
+};
 
 /** Three.js bridge: provides the scene/camera/renderer driven by XR8. */
-interface XR8Threejs {
+type XR8Threejs = {
 	/** Pipeline module that owns the Three.js render loop. */
 	pipelineModule(): XR8PipelineModule;
 	/** The Three.js objects the engine drives. Only valid after `XR8.run` has started. */
@@ -64,10 +64,10 @@ interface XR8Threejs {
 		camera: import('three').PerspectiveCamera;
 		renderer: import('three').WebGLRenderer;
 	};
-}
+};
 
 /** SLAM world tracking controller. */
-interface XR8XrController {
+type XR8XrController = {
 	/** Pipeline module that emits 6DoF pose. */
 	pipelineModule(): XR8PipelineModule;
 	/** Sets tracking options. Must be called before `XR8.run`. */
@@ -76,22 +76,19 @@ interface XR8XrController {
 		disableWorldTracking?: boolean;
 	}): void;
 	/** Seeds the engine with the initial camera origin/orientation. */
-	updateCameraProjectionMatrix(options: {
-		origin?: import('three').Vector3;
-		facing?: import('three').Quaternion;
-	}): void;
+	updateCameraProjectionMatrix(options: { origin?: import('three').Vector3; facing?: import('three').Quaternion }): void;
 	/** Recenters the world origin under the current camera. */
 	recenter(): void;
-}
+};
 
 /** Draws the camera feed into the WebGL canvas. */
-interface XR8GlTextureRenderer {
+type XR8GlTextureRenderer = {
 	/** Pipeline module that renders the camera texture. */
 	pipelineModule(): XR8PipelineModule;
-}
+};
 
 /** Static configuration enums exposed by the engine. */
-interface XR8XrConfig {
+type XR8XrConfig = {
 	/** Device-family enum used by `XR8.run({allowedDevices})`. */
 	device(): {
 		/** Phones, tablets, headsets, and desktop. */
@@ -101,10 +98,10 @@ interface XR8XrConfig {
 		/** Phones, tablets, and headsets. Default. */
 		MOBILE_AND_HEADSETS: 'mobile-and-headsets';
 	};
-}
+};
 
 /** Root `window.XR8` object exposed by `engine-binary` once `xr.js` has loaded. */
-interface XR8 {
+type XR8 = {
 	/** Three.js renderer bridge. */
 	Threejs: XR8Threejs;
 	/** SLAM world tracking. */
@@ -128,23 +125,23 @@ interface XR8 {
 	}): void;
 	/** Stop the camera and run loop. */
 	stop(): void;
-}
+};
 
 /** Helper modules from `@8thwall/xrextras`. Required for the standard XR8 lifecycle. */
-interface XRExtras {
+type XRExtras = {
 	/** Resizes the canvas to fill the viewport on every layout change. */
 	FullWindowCanvas: { pipelineModule(): XR8PipelineModule };
 	/** Loading screen and camera/motion permission flow. */
 	Loading: { pipelineModule(): XR8PipelineModule };
 	/** Renders an error screen on uncaught runtime errors. */
 	RuntimeError: { pipelineModule(): XR8PipelineModule };
-}
+};
 
 /** Pre-AR landing screen from `@8thwall/landing-page`. Detects in-app webviews and other non-AR-capable contexts and prompts the user to open the URL in a real browser. */
-interface LandingPage {
+type LandingPage = {
 	/** Pipeline module that renders the pre-AR landing screen. */
 	pipelineModule(): XR8PipelineModule;
-}
+};
 
 /** Globals set by the engine bundles at runtime. */
 interface Window {

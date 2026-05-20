@@ -1,10 +1,10 @@
 import { Vector3Tuple, Vector4Tuple } from 'three';
 
-import { ITiltOnMoveOptions } from '@/helpers';
-import { IFollowAltitudeOptions } from '@/hooks/useFollowAltitude';
-import { IFollowObjectOptions } from '@/hooks/useFollowObject';
+import { TiltOnMoveOptions } from '@/helpers';
+import { FollowAltitudeOptions } from '@/hooks/useFollowAltitude';
+import { FollowObjectOptions } from '@/hooks/useFollowObject';
 
-export interface IDroneConfig {
+export type DroneConfig = {
 	/** GLB model and Draco decoder paths. */
 	asset: {
 		/** Path to the GLB model. */
@@ -22,12 +22,12 @@ export interface IDroneConfig {
 		scale: Vector3Tuple;
 	};
 	/** Follow-flight config. */
-	follow: IFollowObjectOptions;
+	follow: FollowObjectOptions;
 	/** Altitude-tracking config. */
-	altitude: IFollowAltitudeOptions;
+	altitude: FollowAltitudeOptions;
 	/** Tilt-on-move config. */
-	tilt: ITiltOnMoveOptions;
-}
+	tilt: TiltOnMoveOptions;
+};
 
 export const DRONE_CONFIG = {
 	asset: {
@@ -45,5 +45,5 @@ export const DRONE_CONFIG = {
 		deadband: 0.05,
 	},
 	altitude: { offset: -0.5, smoothing: 0.02, deadband: 0.05 },
-	tilt: { factor: 5, smoothing: 0.1 },
-} satisfies IDroneConfig;
+	tilt: { factor: 10, smoothing: 0.1, maxTiltDeg: 30 },
+} satisfies DroneConfig;

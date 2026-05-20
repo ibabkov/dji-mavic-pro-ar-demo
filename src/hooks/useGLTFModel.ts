@@ -13,7 +13,7 @@ const gltfLoader = new GLTFLoader();
 gltfLoader.setDRACOLoader(dracoLoader);
 let dracoConfigured = false;
 
-export interface IGLTFModelOptions {
+export type GLTFModelOptions = {
 	dracoDecoderPath?: string;
 	/** Initial position as [x, y, z]. */
 	position?: Vector3Tuple;
@@ -21,19 +21,19 @@ export interface IGLTFModelOptions {
 	quaternion?: Vector4Tuple;
 	/** Initial scale as [x, y, z]. */
 	scale?: Vector3Tuple;
-}
+};
 
-export interface IGLTFModelHandles {
+export type GLTFModelHandles = {
 	/** Loaded model root, null until parsed. */
 	ref: RefObject<Object3D | null>;
 	/** Animation mixer, null until parsed or if the file has no clips. */
 	mixerRef: RefObject<AnimationMixer | null>;
 	/** Load error, null unless the GLB failed to load. */
 	error: unknown;
-}
+};
 
 /** Loads a GLB once, adds it to the scene, and disposes its GPU resources on unmount. */
-export const useGLTFModel = (url: string, opts: IGLTFModelOptions = {}): IGLTFModelHandles => {
+export const useGLTFModel = (url: string, opts: GLTFModelOptions = {}): GLTFModelHandles => {
 	const { scene } = useXR8SceneContext();
 	const ref = useRef<Object3D | null>(null);
 	const mixerRef = useRef<AnimationMixer | null>(null);

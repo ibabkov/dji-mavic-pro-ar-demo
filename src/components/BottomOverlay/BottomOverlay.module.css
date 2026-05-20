@@ -1,0 +1,39 @@
+.overlay {
+	/* Seconds each hint stays before it fades out. Override via the durationSeconds prop. */
+	--bottom-overlay-duration: 5s;
+
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 60px;
+	z-index: 10;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: color-mix(in srgb, var(--primary-color) 85%, transparent);
+	color: var(--text-color);
+	font-size: 22px;
+	line-height: 28px;
+	pointer-events: none;
+}
+
+/* Each cycled text holds for --bottom-overlay-duration, then fades out */
+.item {
+	animation-name: overlay-dismiss;
+	animation-duration: 0.4s;
+	animation-timing-function: ease-out;
+	animation-delay: var(--bottom-overlay-duration);
+	animation-fill-mode: forwards;
+}
+
+@keyframes overlay-dismiss {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+		visibility: hidden;
+	}
+}

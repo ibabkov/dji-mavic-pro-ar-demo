@@ -1,17 +1,17 @@
 import { MathUtils, Object3D, Vector3 } from 'three';
 
-export interface ITiltOnMoveOptions {
+export type TiltOnMoveOptions = {
 	/** Scales horizontal speed into a target lean angle. */
 	factor?: number;
 	/** Per-frame lerp weight toward the target tilt. */
 	smoothing?: number;
 	/** Maximum lean in degrees. */
 	maxTiltDeg?: number;
-}
+};
 
 /** Leans `object` into its own horizontal motion */
-export const tiltOnMove = (object: Object3D, prevPosition: Vector3, opts: ITiltOnMoveOptions = {}): void => {
-	const { factor = 5, smoothing = 0.1, maxTiltDeg = 60 } = opts;
+export const tiltOnMove = (object: Object3D, prevPosition: Vector3, opts: TiltOnMoveOptions = {}): void => {
+	const { factor = 5, smoothing = 0.1, maxTiltDeg = 45 } = opts;
 	const maxRad = MathUtils.degToRad(maxTiltDeg);
 
 	const dx = object.position.x - prevPosition.x;

@@ -3,18 +3,18 @@
 import { useEffect, useRef } from 'react';
 
 import { useXR8SceneContext } from '@/hooks/useXR8Scene';
-import { IFrameCallback } from '@/types';
+import { FrameCallback } from '@/types';
 
-export type { IFrameCallback };
+export type { FrameCallback };
 
 /** Subscribes a callback to the scene's frame bus for the component's lifetime. */
-export const useFrame = (callback: IFrameCallback): void => {
+export const useFrame = (callback: FrameCallback): void => {
 	const { frameBus } = useXR8SceneContext();
 	const callbackRef = useRef(callback);
 	callbackRef.current = callback;
 
 	useEffect(() => {
-		const dispatch: IFrameCallback = args => callbackRef.current(args);
+		const dispatch: FrameCallback = args => callbackRef.current(args);
 		frameBus.add(dispatch);
 
 		return () => {

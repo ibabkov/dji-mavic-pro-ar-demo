@@ -2,17 +2,17 @@
 
 import { useCallback, useRef, useState } from 'react';
 
-export interface IPipelineHealth {
+export type PipelineHealth = {
 	/** True once `limit` consecutive frame exceptions have occurred. */
 	hasFailed: boolean;
 	/** Call on a clean frame, resets the consecutive exception count. */
 	reportFrame: () => void;
 	/** Call when a frame throws, increments the count and trips `hasFailed` at `limit`. */
 	reportException: (error: unknown) => void;
-}
+};
 
 /** Tracks AR session health by counting consecutive frame exceptions, tripping `hasFailed` once `limit` is reached. */
-export const usePipelineHealth = (limit: number = 10): IPipelineHealth => {
+export const usePipelineHealth = (limit: number = 10): PipelineHealth => {
 	const exceptionCountRef = useRef(0);
 	const [hasFailed, setHasFailed] = useState(false);
 

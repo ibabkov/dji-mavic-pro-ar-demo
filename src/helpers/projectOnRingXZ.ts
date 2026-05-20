@@ -6,9 +6,5 @@ export const projectOnRingXZ = (follower: Object3D, target: Object3D, distance: 
 	const dz = follower.position.z - target.position.z;
 	const len = Math.hypot(dx, dz) || 1;
 
-	return out.set(
-		target.position.x + (dx / len) * distance,
-		follower.position.y,
-		target.position.z + (dz / len) * distance,
-	);
+	return out.set(target.position.x + (dx / len) * distance, follower.position.y, target.position.z + (dz / len) * distance);
 };
